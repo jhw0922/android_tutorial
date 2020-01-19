@@ -30,17 +30,19 @@ public class MyActivity extends AppCompatActivity  implements View.OnClickListen
         for (int i = 0; i < 3; i++){
             for (int j = 0; j < 3; j++){
                 String buttonID = "button_" + i + j;
-                int resID = getResources().getIdentifier(buttonID, defType: "id", getPackageName());
+                String defType = null;
+                int resID = getResources().getIdentifier(buttonID, "id", getPackageName());
                 buttons[i][j] = findViewById(resID);
                 buttons[i][j].setOnClickListener(this);
             }
         }
 
-        Button buttonReset = findViewById(R.id.button_reset);
+        final Button buttonReset = findViewById(R.id.buton_reset);
         buttonReset.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+
 
             }
         });
@@ -49,29 +51,30 @@ public class MyActivity extends AppCompatActivity  implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        if (!((Button) v).getText().toString().equals("")) {
+        if (!((Button) view).getText().toString().equals("")) {
             return;
         }
 
         if (player1Turn) {
-            ((Button) v).setText("X");
+            ((Button) view).setText("X");
         } else {
-            ((Button) v).setText("o");
+            ((Button) view).setText("o");
         }
 
         roundCount++;
 
     }
 
-    private boolean checkForWin() {
+    private void checkForWin() {
         String[][] field = new String[3][3];
 
         for (int i = 0; i < 3; i++) {
-            for(int j = 0; j < 3; j++) {
+            for (int j = 0; j < 3; j++) {
                 field[i][j] = buttons[i][j].getText().toString();
             }
         }
-    }
 
-}
-//https://www.youtube.com/watch?v=9nVSYkQoV5I
+
+
+    }
+    }
